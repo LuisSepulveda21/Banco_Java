@@ -97,7 +97,7 @@ public class Banco {
     public void Mostrar(Caja ptr) {
         Caja p = ptr;
         while (p != null) {
-            System.out.println(p.id + "_____" + p.dinero);
+            System.out.println("Caja ID:" + p.id + " // " + "Capital:$"+ p.dinero);
             Cliente q = p.LinkCliente;
             while (q != null) {
                 System.out.println("     ------> " + q.id + "______" + q.t_transaccion);
