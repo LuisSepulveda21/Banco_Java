@@ -34,9 +34,9 @@ public class Vista extends javax.swing.JFrame {
         Text_Dinero = new javax.swing.JTextField();
         Btn_Send = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        Num_Caja = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Tipo_Tran = new javax.swing.JComboBox<>();
+        idCaja = new javax.swing.JTextField();
         formClientes = new javax.swing.JFrame();
         jLabel3 = new javax.swing.JLabel();
         idClienteTxt = new javax.swing.JTextField();
@@ -72,6 +72,12 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
+        idCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idCajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FormLayout = new javax.swing.GroupLayout(Form.getContentPane());
         Form.getContentPane().setLayout(FormLayout);
         FormLayout.setHorizontalGroup(
@@ -82,11 +88,11 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(FormLayout.createSequentialGroup()
                         .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Tipo_Tran, 0, 126, Short.MAX_VALUE)
-                            .addComponent(Num_Caja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(idCaja)))
                     .addGroup(FormLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -101,9 +107,9 @@ public class Vista extends javax.swing.JFrame {
             FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FormLayout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Num_Caja, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -259,10 +265,11 @@ public class Vista extends javax.swing.JFrame {
 
     private void Btn_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SendActionPerformed
         String M = Tipo_Tran.getSelectedItem().toString();
+        int idBox=Integer.parseInt(idCaja.getText());
         int Cash = Integer.parseInt(Text_Dinero.getText());
         Cont++;
         Caja K = bank.getPtr();
-        K = bank.AgregarCaja(K, Cont, M, Cash, 0);
+        K = bank.AgregarCaja(K, idBox, M, Cash, Cont);
         //System.out.println(K.dinero);
         bank.setPtr(K);
         bank.Mostrar(K);
@@ -293,9 +300,13 @@ public class Vista extends javax.swing.JFrame {
     private void Btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_deleteActionPerformed
         int Id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese ID de la Caja"));
         Caja R = bank.getPtr();
-        
+        bank.EliminarCaja(R, Id);
 
     }//GEN-LAST:event_Btn_deleteActionPerformed
+
+    private void idCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idCajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,10 +348,10 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton Btn_cliente;
     private javax.swing.JButton Btn_delete;
     private javax.swing.JFrame Form;
-    private javax.swing.JLabel Num_Caja;
     private javax.swing.JTextField Text_Dinero;
     private javax.swing.JComboBox<String> Tipo_Tran;
     private javax.swing.JFrame formClientes;
+    private javax.swing.JTextField idCaja;
     private javax.swing.JTextField idClienteTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
